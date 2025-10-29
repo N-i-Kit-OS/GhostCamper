@@ -1,0 +1,13 @@
+# Godot
+.import/
+.godot/
+export_presets.cfg
+# Кэш/сборки
+*.tmp
+*.log
+*.cache
+# ОС/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

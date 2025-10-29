@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://buh13bycgwpad"]
+
+[ext_resource type="Script" uid="uid://ur0gmjj8uq3m" path="res://scripts/ui/level_select.gd" id="1_x15a5"]
+
+[node name="LevelSelect" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_x15a5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.5137255, 0.81960785, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="level_1" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Дом"
+
+[node name="level_2" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Двор"
+
+[node name="level_3" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Парк"
+
+[node name="level_4" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Улица"
+
+[node name="level_5" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Клуб"
+
+[node name="level_6" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Сон"
+
+[node name="back_btn" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Зажурчать"

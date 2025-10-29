@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://boykt467blor8"]
+
+[ext_resource type="Script" uid="uid://cbo5s7yuui0r5" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_6tw0m")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.5120552, 0.8209071, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Убивать дальше"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Найти другую
+"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Упокоиться..."

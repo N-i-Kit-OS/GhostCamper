@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://br6hjfg7xbg2s"]
+
+[ext_resource type="Script" uid="uid://we16e50intvf" path="res://scripts/game/main.gd" id="1_oekm8"]
+[ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="2_yd8kv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+radius = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no8bm"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itxqv"]
+bg_color = Color(1, 0.3019608, 0.60784316, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_oekm8")
+enemy_scene = ExtResource("2_yd8kv")
+
+[node name="Girl" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Girl"]
+shape = SubResource("CircleShape2D_7dm0k")
+debug_color = Color(0.9096675, 0.00011166334, 0.7343508, 0.41960785)
+
+[node name="Polygon2D" type="Polygon2D" parent="Girl"]
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-12, 10, 12, 10, 0, -14)
+uv = PackedVector2Array(-150, -86, 243, 3, -152, 51)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="HUD" type="CanvasGroup" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 236.0
+offset_bottom = 66.0
+theme_override_styles/background = SubResource("StyleBoxFlat_no8bm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_itxqv")
+value = 100.0
+show_percentage = false

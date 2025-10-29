@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtycxrbhxbcw"]
+
+[ext_resource type="Script" uid="uid://dcsy451a1d106" path="res://scripts/entities/enemy.gd" id="2_ktqfp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vufel"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Men" type="Area2D" parent="."]
+script = ExtResource("2_ktqfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Men"]
+shape = SubResource("RectangleShape2D_vufel")
+debug_color = Color(0.30049342, 0.49596357, 1, 0.41960785)
+
+[node name="Polygon2D" type="Polygon2D" parent="Men"]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
+uv = PackedVector2Array(-310, -69, -313, 58, -147, 57, -143, -72)
