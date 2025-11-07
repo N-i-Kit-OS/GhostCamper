@@ -1,5 +1,6 @@
 extends Area2D
 
+signal died
 @export var speed: float = 120.0
 @export var max_health: int = 1
 var health: int
@@ -20,4 +21,5 @@ func _input_event(_vp: Viewport, e: InputEvent, _i: int) -> void:
 	if e is InputEventMouseButton and e.pressed and e.button_index == MOUSE_BUTTON_LEFT:
 		health -= 1
 		if health <= 0:
+			died.emit()
 			queue_free()

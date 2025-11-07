@@ -32,9 +32,16 @@ uv = PackedVector2Array(-150, -86, 243, 3, -152, 51)
 wait_time = 1.5
 autostart = true
 
-[node name="HUD" type="CanvasGroup" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="HUD"]
+[node name="HUDRoot" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/HUDRoot"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 48.0
 offset_right = 236.0
@@ -43,3 +50,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_no8bm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_itxqv")
 value = 100.0
 show_percentage = false
+
+[node name="Progress" type="Label" parent="HUD/HUDRoot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 556.0
+offset_top = 16.0
+offset_right = 596.0
+offset_bottom = 39.0
+grow_horizontal = 2
+text = "0"
+horizontal_alignment = 1

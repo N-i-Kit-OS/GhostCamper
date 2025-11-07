@@ -8,11 +8,14 @@ extends Node2D
 
 @onready var girl: Area2D = $Girl
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var health_bar: ProgressBar = $HUD/HealthBar
+@onready var health_bar: ProgressBar = $HUD/HUDRoot/HealthBar
+@onready var kills_label: Label = $HUD/HUDRoot/Progress
+var killed: int = 0
 
 var girl_health: int
 
 func _ready() -> void:
+	kills_label.text = "0"
 	randomize()
 	girl.global_position = get_viewport_rect().size * 0.5
 	spawn_timer.wait_time = spawn_interval
@@ -32,6 +35,7 @@ func _on_spawn_timeout() -> void:
 	var unit := enemy.get_node("Men") as Area2D
 	unit.global_position = _random_edge_position()
 	unit.set("target", girl)
+	unit.connect("died", _on_enemy_died)
 
 func _random_edge_position() -> Vector2:
 	var a := randf() * TAU
@@ -61,3 +65,7 @@ func _unhandled_input(e: InputEvent) -> void:
 		get_tree().paused = true
 		var ui := PAUSE_MENU.instantiate()
 		add_child(ui)
+
+func _on_enemy_died() -> void:
+	killed += 1
+	kills_label.text = str(killed)
