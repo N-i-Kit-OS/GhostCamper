@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=3 format=3 uid="uid://i17who68aqo5"]
+
+[ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_goftu"]
+[ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="1_ucpcc"]
+
+[resource]
+script = ExtResource("1_goftu")
+scene = ExtResource("1_ucpcc")
+clicks_to_kill = 3
+base_speed = 90.0
+metadata/_custom_type_script = "uid://b7g4gic283qc2"

@@ -11,8 +11,12 @@ extends Node2D
 @onready var health_bar: ProgressBar = $HUD/HUDRoot/HealthBar
 @onready var kills_label: Label = $HUD/HUDRoot/Progress
 var killed: int = 0
-
 var girl_health: int
+var enemy_types: Array[EnemyType] = [
+	preload("res://resources/enemies/basic_enemy.tres") as EnemyType,
+	preload("res://resources/enemies/fast_enemy.tres") as EnemyType,
+	preload("res://resources/enemies/tank_enemy.tres") as EnemyType,
+]
 
 func _ready() -> void:
 	kills_label.text = "0"
@@ -30,11 +34,12 @@ func _ready() -> void:
 	girl.area_entered.connect(_on_girl_area_entered)  # меняем на area_entered
 
 func _on_spawn_timeout() -> void:
-	var enemy := enemy_scene.instantiate()
+	var type: EnemyType = enemy_types[randi() % enemy_types.size()]
+	var enemy := type.scene.instantiate()
 	add_child(enemy)
 	var unit := enemy.get_node("Men") as Area2D
 	unit.global_position = _random_edge_position()
-	unit.set("target", girl)
+	unit.setup(type, girl)
 	unit.connect("died", _on_enemy_died)
 
 func _random_edge_position() -> Vector2:

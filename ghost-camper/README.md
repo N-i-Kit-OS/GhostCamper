@@ -23,6 +23,11 @@ res://
 │       ├── LevelSelect.tscn
 │       ├── PauseMenu.tscn
 │       └── GameOver.tscn
+├── resources/
+│   └── enemies/
+│       ├── basic_enemy.tres
+│       ├── fast_enemy.tres
+│       └── tank_enemy.tres
 ├── scripts/
 │   ├── entities/
 │   │   └── enemy.gd
@@ -34,12 +39,14 @@ res://
 │       ├── pause_menu.gd
 │       └── game_over.gd
 ├── scripts/resources/
+│   └── enemy_type.gd
 └── assets/
 ```
 
 ## Co działa
 
 - **Pętla rozgrywki**: przeciwnicy pojawiają się cyklicznie, idą do dziewczyny, kliknięcie eliminuje przeciwnika. Kontakt zabiera HP; przy 0 HP przechodzimy do sceny `GameOver`.
+- **Typy przeciwników**: trzy zasoby EnemyType (`basic`, `fast`, `tank`) definiują bazową prędkość i liczbę kliknięć do zabicia. `main.gd` losowo wybiera typ przy każdym spawnie, więc wrogowie różnią się szybkością oraz wytrzymałością.
 - **HUD**: pasek zdrowia (ProgressBar) oraz licznik zabitych (`Progress`) wyśrodkowany u góry. Brak innych widżetów.
 - **Pauza**: ESC otwiera `PauseMenu` (CanvasLayer z przyciemnieniem i przyciskami "Kontynuuj / Rrestart / Menu").
 - **Menu**: `MainMenu` → `LevelSelect` → start `main.tscn`. Przycisk "Nazad" wraca do menu.
@@ -55,7 +62,8 @@ res://
 - Uzły Area2D/Node2D, Timery, sygnały.
 - CanvasLayer dla interfejsu.
 - `GameManager` (autoload) – obecnie prosty enum stanu, planowany rozwój.
-- Brak jeszcze zasobów `.tres` (EnemyType/LevelConfig planowane).
+- `EnemyType` (Resource) – klasa definiująca parametry przeciwnika. Zasoby `.tres` w `resources/enemies/`.
+- LevelConfig jeszcze w planach.
 
 ## Zachowanie gry
 
