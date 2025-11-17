@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=6 format=3 uid="uid://c421brbafsq0x"]
+
+[ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_saxkj"]
+[ext_resource type="Resource" uid="uid://dch3sh3o61s4m" path="res://resources/enemies/basic_enemy.tres" id="2_euiwn"]
+[ext_resource type="Resource" uid="uid://g1sgm0v1ua57" path="res://resources/enemies/fast_enemy.tres" id="3_w5du7"]
+[ext_resource type="Resource" uid="uid://i17who68aqo5" path="res://resources/enemies/tank_enemy.tres" id="4_sdvim"]
+[ext_resource type="Script" uid="uid://c5213vf02dguh" path="res://scripts/resources/level_config.gd" id="5_acmd0"]
+
+[resource]
+script = ExtResource("5_acmd0")
+level_name = "dream"
+total_enemies = 150
+spawn_interval_max = 0.4
+level_duration = 110.0
+girl_max_health = 120
+damage_per_hit = 30
+enemy_types = Array[ExtResource("1_saxkj")]([ExtResource("2_euiwn"), ExtResource("3_w5du7"), ExtResource("4_sdvim")])
+enemy_weights = Array[float]([0.3, 1.0, 1.0])
+speed_multiplier_min = 0.8
+speed_multiplier_max = 2.2
+metadata/_custom_type_script = "uid://c5213vf02dguh"

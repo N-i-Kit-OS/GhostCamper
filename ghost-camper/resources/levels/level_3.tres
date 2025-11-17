@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=6 format=3 uid="uid://bppr5i8col73p"]
+
+[ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_bl7rf"]
+[ext_resource type="Resource" uid="uid://dch3sh3o61s4m" path="res://resources/enemies/basic_enemy.tres" id="2_dbnjb"]
+[ext_resource type="Resource" uid="uid://g1sgm0v1ua57" path="res://resources/enemies/fast_enemy.tres" id="3_vh5kk"]
+[ext_resource type="Resource" uid="uid://i17who68aqo5" path="res://resources/enemies/tank_enemy.tres" id="4_sdtqw"]
+[ext_resource type="Script" uid="uid://c5213vf02dguh" path="res://scripts/resources/level_config.gd" id="5_c1nnq"]
+
+[resource]
+script = ExtResource("5_c1nnq")
+level_name = "park"
+total_enemies = 80
+spawn_interval_max = 0.9
+level_duration = 90.0
+enemy_types = Array[ExtResource("1_bl7rf")]([ExtResource("2_dbnjb"), ExtResource("3_vh5kk"), ExtResource("4_sdtqw")])
+enemy_weights = Array[float]([0.6, 1.0, 0.5])
+speed_multiplier_min = 1.1
+speed_multiplier_max = 1.6
+metadata/_custom_type_script = "uid://c5213vf02dguh"

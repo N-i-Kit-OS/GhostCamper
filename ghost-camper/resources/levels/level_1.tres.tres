@@ -9,10 +9,12 @@
 [resource]
 script = ExtResource("2_d2fcr")
 level_name = "room"
-total_enemies = 20
-spawn_interval_min = 0.6
-spawn_interval_max = 1.2
-level_duration = 90.0
+total_enemies = 30
+spawn_interval_min = 1.0
+spawn_interval_max = 1.8
+damage_per_hit = 15
 enemy_types = Array[ExtResource("1_nrrg6")]([ExtResource("2_mi6r6"), ExtResource("3_wunt1"), ExtResource("4_ddo5t")])
-enemy_weights = Array[float]([1.0, 0.7, 0.5])
+enemy_weights = Array[float]([1.0, 0.3, 0.2])
+speed_multiplier_min = 0.9
+speed_multiplier_max = 1.2
 metadata/_custom_type_script = "uid://c5213vf02dguh"

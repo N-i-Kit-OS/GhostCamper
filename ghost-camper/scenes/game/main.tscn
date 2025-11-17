@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://br6hjfg7xbg2s"]
+[gd_scene load_steps=6 format=3 uid="uid://br6hjfg7xbg2s"]
 
 [ext_resource type="Script" uid="uid://we16e50intvf" path="res://scripts/game/main.gd" id="1_oekm8"]
-[ext_resource type="Resource" uid="uid://8ee682rpbcyv" path="res://resources/levels/level_1.tres.tres" id="2_uaf1y"]
 [ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="2_yd8kv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
@@ -16,7 +15,6 @@ bg_color = Color(1, 0.3019608, 0.60784316, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oekm8")
-level_config = ExtResource("2_uaf1y")
 enemy_scene = ExtResource("2_yd8kv")
 
 [node name="Girl" type="Area2D" parent="."]

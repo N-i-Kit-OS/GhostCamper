@@ -15,6 +15,10 @@ var spawned: int = 0
 var elapsed_time: float = 0.0
 
 func _ready() -> void:
+	if not level_config and GameManager.current_level_config_path != "":
+		var cfg := load(GameManager.current_level_config_path)
+		if cfg:
+			level_config = cfg
 	if not level_config:
 		push_error("LevelConfig не назначен!")
 		return

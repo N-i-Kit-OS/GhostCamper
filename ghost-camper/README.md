@@ -27,7 +27,12 @@ res://
 │  │  ├─ fast_enemy.tres
 │  │  └─ tank_enemy.tres
 │  └─ levels/
-│     └─ level_1.tres
+│     ├─ level_1.tres (Комната девушки)
+│     ├─ level_2.tres (Двор)
+│     ├─ level_3.tres (Парк)
+│     ├─ level_4.tres (Улица)
+│     ├─ level_5.tres (Клуб)
+│     └─ level_6.tres (Сон девушки)
 ├─ scripts/
 │  ├─ entities/enemy.gd
 │  ├─ game/main.gd
@@ -46,10 +51,12 @@ res://
 - Domyślnie pełny ekran, bazowa rozdzielczość: 1920×1080 (Stretch: `canvas_items`, Aspect: `keep`).
 - Przeciwnicy spawnują się poza ekranem i podążają do bohaterki.
 - Typy przeciwników definiowane przez zasoby `EnemyType` (`basic/fast/tank`) i losowane z wagami.
-- Parametry poziomu z `LevelConfig` (`resources/levels/level_1.tres`):
+- **6 poziomów** z narastającą trudnością (od 30 do 150 wrogów, różne prędkości i częstotliwość spawnu).
+- Parametry każdego poziomu w `LevelConfig` (`resources/levels/level_*.tres`):
   - `total_enemies`, `spawn_radius`, `spawn_interval_min/max`, `girl_max_health`, `damage_per_hit`,
   - `speed_multiplier_min/max` (narastanie szybkości w czasie),
   - tablice `enemy_types` i `enemy_weights`.
+- System wyboru poziomów: `GameManager.current_level_config_path` ustawiany w `level_select.gd`, `main.gd` ładuje odpowiedni `LevelConfig` przy starcie.
 - HUD: pasek HP w lewym górnym rogu, licznik zabójstw wycentrowany u góry (Control ma `Mouse Filter: Ignore`, więc nie blokuje kliknięć).
 - Pauza (ESC). Ekran porażki (`game_over.tscn`). Ekran zwycięstwa (`victory.tscn`) po wybiciu wszystkich zespawnowanych wrogów.
 
@@ -66,12 +73,22 @@ res://
 - HUD wycentrowany; elementy UI nie przechwytują myszy (`Mouse Filter: Ignore`).
 - Dodany ekran zwycięstwa oraz poprawna logika zakończenia poziomu.
 - Skrót F11 do przełączania pełnego ekranu.
+- **Utworzono 6 poziomów** z wyważoną trudnością:
+  - Level 1 (Комната девушки): 30 wrogów, łatwy start
+  - Level 2 (Двор): 50 wrogów, umiarkowana trudność
+  - Level 3 (Парк): 80 wrogów, pierwszy poważny wyzwanie
+  - Level 4 (Улица): 100 wrogów, wysoka trudność
+  - Level 5 (Клуб): 120 wrogów, ekstremalna trudność
+  - Level 6 (Сон девушки): 150 wrogów, finałowy boss
+- **System wyboru poziomów**: `GameManager` przechowuje `current_level_config_path`, `level_select.gd` ustawia odpowiedni poziom przed startem gry.
 
 ## Plany
 - Ekran wyników (czas, zabójstwa, otrzymane obrażenia) na zwycięstwie.
-- Progresja poziomów (kilka `LevelConfig`, przejścia, zapisy).
+- System zapisywania postępu (odblokowane poziomy, rekordy).
+- **Przeszkody na poziomach** (hybrydowy system: predefiniowane szablony + losowy wybór).
+- Mechanika omijania przeszkód przez wrogów (A* lub uproszczony algorytm).
 - Dźwięki (klik, obrażenia, zwycięstwo) i proste VFX trafień.
-- Balans: płynne zmniejszanie interwału spawnu, mini‑fale.
+- Mechanika ruchu bohaterki (dla poziomu 6).
 
 ## Ustawienia okna (dla przypomnienia)
 - Project → Project Settings → Display → Window: Mode=Fullscreen, Stretch=`canvas_items`, Aspect=`keep`.
