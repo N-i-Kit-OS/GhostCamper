@@ -5,16 +5,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vufel"]
 size = Vector2(16, 16)
 
-[node name="Enemy" type="Node2D"]
-
-[node name="Men" type="Area2D" parent="."]
+[node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("2_ktqfp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Men"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vufel")
 debug_color = Color(0.30049342, 0.49596357, 1, 0.41960785)
 
-[node name="Polygon2D" type="Polygon2D" parent="Men"]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Hitbox"]
 color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
 uv = PackedVector2Array(-310, -69, -313, 58, -147, 57, -143, -72)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_vufel")
+debug_color = Color(0.30049342, 0.49596357, 1, 0.41960785)

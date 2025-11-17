@@ -15,6 +15,10 @@ res://
 ├─ scenes/
 │  ├─ entities/enemy.tscn
 │  ├─ game/main.tscn
+│  ├─ obstacles/
+│  │  ├─ obstacle.tscn (bazowy blok)
+│  │  └─ layouts/
+│  │     └─ level_1/layout_*.tscn (szablony przeszkód)
 │  └─ ui/
 │     ├─ main_menu.tscn
 │     ├─ level_select.tscn
@@ -51,11 +55,12 @@ res://
 - Domyślnie pełny ekran, bazowa rozdzielczość: 1920×1080 (Stretch: `canvas_items`, Aspect: `keep`).
 - Przeciwnicy spawnują się poza ekranem i podążają do bohaterki.
 - Typy przeciwników definiowane przez zasoby `EnemyType` (`basic/fast/tank`) i losowane z wagami.
+- Przeszkody: hybrydowy system – w `LevelConfig` podajemy listę szablonów (`obstacle_layouts`), a `main.gd` losowo ładuje jedną scenę layoutu; obstacle to `StaticBody2D` z kolizją, format gotowy do rozbudowy.
 - **6 poziomów** z narastającą trudnością (od 30 do 150 wrogów, różne prędkości i częstotliwość spawnu).
 - Parametry każdego poziomu w `LevelConfig` (`resources/levels/level_*.tres`):
   - `total_enemies`, `spawn_radius`, `spawn_interval_min/max`, `girl_max_health`, `damage_per_hit`,
   - `speed_multiplier_min/max` (narastanie szybkości w czasie),
-  - tablice `enemy_types` i `enemy_weights`.
+  - tablice `enemy_types`, `enemy_weights`, listy `obstacle_layouts`.
 - System wyboru poziomów: `GameManager.current_level_config_path` ustawiany w `level_select.gd`, `main.gd` ładuje odpowiedni `LevelConfig` przy starcie.
 - HUD: pasek HP w lewym górnym rogu, licznik zabójstw wycentrowany u góry (Control ma `Mouse Filter: Ignore`, więc nie blokuje kliknięć).
 - Pauza (ESC). Ekran porażki (`game_over.tscn`). Ekran zwycięstwa (`victory.tscn`) po wybiciu wszystkich zespawnowanych wrogów.
@@ -65,6 +70,7 @@ res://
 - Kliknięcie w wroga zmniejsza jego „życie kliknięciowe”; przy 0 emituje `died` i znika.
 - Spawn sterowany timerem w przedziale `[spawn_interval_min; spawn_interval_max]` i zatrzymuje się po `total_enemies`.
 - Zwycięstwo: gdy `spawned >= total_enemies` oraz `active_enemies == 0` (liczone na scenie).
+- Przeciwnicy to `CharacterBody2D` z wbudowaną kolizją (unikają przeszkód), a strefa trafień (`Area2D`) siedzi w środku – dzięki temu wciąż działają kliknięcia i urazy bohaterki.
 
 ## Nowości w tej iteracji
 - Integracja `LevelConfig` w `main.gd` (brak hardcodu parametrów i typów wrogów).
@@ -81,6 +87,8 @@ res://
   - Level 5 (Клуб): 120 wrogów, ekstremalna trudność
   - Level 6 (Сон девушки): 150 wrogów, finałowy boss
 - **System wyboru poziomów**: `GameManager` przechowuje `current_level_config_path`, `level_select.gd` ustawia odpowiedni poziom przed startem gry.
+- Hybrydowy system przeszkód: bazowy `StaticBody2D` (`obstacle.tscn`) + zestaw layoutów; `LevelConfig.obstacle_layouts` pozwala losowo wczytać scenę z przeszkodami.
+- Przeciwnicy przeniesieni na `CharacterBody2D` + wewnętrzny `Area2D` (Hitbox) – ruch reaguje na kolizje, ale klikanie/obrażenia działają jak wcześniej.
 
 ## Plany
 - Ekran wyników (czas, zabójstwa, otrzymane obrażenia) na zwycięstwie.

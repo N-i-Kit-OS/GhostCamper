@@ -7,6 +7,7 @@ extends Node2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var health_bar: ProgressBar = $HUD/HUDRoot/HealthBar
 @onready var kills_label: Label = $HUD/HUDRoot/Progress
+@onready var obstacles_root: Node2D = $Obstacles
 
 var active_enemies: int = 0
 var killed: int = 0
@@ -22,12 +23,14 @@ func _ready() -> void:
 	if not level_config:
 		push_error("LevelConfig не назначен!")
 		return
-		
+	
 	active_enemies = 0
 	
 	kills_label.text = "0"
 	randomize()
 	girl.global_position = get_viewport_rect().size * 0.5
+	
+	_load_obstacle_layout()
 	
 	spawned = 0
 	elapsed_time = 0.0
@@ -43,8 +46,20 @@ func _ready() -> void:
 	girl_health = level_config.girl_max_health
 	girl.area_entered.connect(_on_girl_area_entered)
 
+func _load_obstacle_layout() -> void:
+	if level_config.obstacle_layouts.is_empty():
+		return
+	
+	var layout_path := level_config.obstacle_layouts[randi() % level_config.obstacle_layouts.size()]
+	var layout_scene := load(layout_path)
+	if not layout_scene:
+		push_warning("Не удалось загрузить шаблон препятствий: %s" % layout_path)
+		return
+	
+	var layout: Node = layout_scene.instantiate()
+	obstacles_root.add_child(layout)
+
 func _on_spawn_timeout() -> void:
-	# Останавливаем спавн, если достигли лимита врагов
 	if spawned >= level_config.total_enemies:
 		spawn_timer.stop()
 		return
@@ -55,16 +70,15 @@ func _on_spawn_timeout() -> void:
 	
 	var enemy := type.scene.instantiate()
 	add_child(enemy)
-	var unit := enemy.get_node("Men") as Area2D
-	unit.global_position = _random_edge_position()
-	unit.setup(type, girl)
 	
-	# Применяем множитель скорости, растущий со временем
+	enemy.global_position = _random_edge_position()
+	enemy.setup(type, girl)
+	
 	var m := _get_speed_multiplier()
-	if "speed" in unit:
-		unit.speed *= m
+	if "speed" in enemy:
+		enemy.speed *= m
 	
-	unit.connect("died", _on_enemy_died)
+	enemy.connect("died", _on_enemy_died)
 	
 	active_enemies += 1
 	spawned += 1
@@ -72,7 +86,6 @@ func _on_spawn_timeout() -> void:
 	if spawned >= level_config.total_enemies and active_enemies == 0:
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/victory.tscn")
 	
-	# Случайный интервал между min и max
 	spawn_timer.wait_time = randf_range(level_config.spawn_interval_min, level_config.spawn_interval_max)
 
 func _get_random_enemy_type() -> EnemyType:
@@ -113,7 +126,11 @@ func _on_girl_area_entered(area: Area2D) -> void:
 		girl_health -= level_config.damage_per_hit
 		health_bar.value = float(girl_health) / level_config.girl_max_health * 100
 		active_enemies = max(active_enemies - 1, 0)
-		area.call_deferred("queue_free")
+		
+		var enemy := area.get_parent()
+		if enemy:
+			enemy.queue_free()
+		
 		if girl_health <= 0:
 			get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/game_over.tscn")
 

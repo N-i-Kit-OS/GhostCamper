@@ -18,3 +18,6 @@ class_name LevelConfig
 # Глобальный множитель скорости (растёт со временем)
 @export var speed_multiplier_min: float = 1.0
 @export var speed_multiplier_max: float = 1.3
+
+# Шаблоны препятствий для этого уровня (гибридная система)
+@export var obstacle_layouts: Array[String] = []  # Пути к .tscn файлам шаблонов
