@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="2_yd8kv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
-radius = 16.0
+radius = 23.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no8bm"]
 bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
@@ -18,12 +18,14 @@ script = ExtResource("1_oekm8")
 enemy_scene = ExtResource("2_yd8kv")
 
 [node name="Girl" type="Area2D" parent="."]
+position = Vector2(363.9, 805.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Girl"]
 shape = SubResource("CircleShape2D_7dm0k")
 debug_color = Color(0.9096675, 0.00011166334, 0.7343508, 0.41960785)
 
 [node name="Polygon2D" type="Polygon2D" parent="Girl"]
+scale = Vector2(2, 2)
 color = Color(1, 0, 1, 1)
 polygon = PackedVector2Array(-12, 10, 12, 10, 0, -14)
 uv = PackedVector2Array(-150, -86, 243, 3, -152, 51)

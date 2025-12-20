@@ -7,3 +7,16 @@ signal state_changed(state: State)
 func set_state(s: State) -> void:
 	state = s
 	state_changed.emit(s)
+
+var cursor_initialized := false
+
+func _ready() -> void:
+	_set_custom_cursor()
+
+func _set_custom_cursor() -> void:
+	if cursor_initialized:
+		return
+	var cursor_tex := load("res://assets/ui/cursor.png")
+	if cursor_tex:
+		Input.set_custom_mouse_cursor(cursor_tex, Input.CURSOR_ARROW, Vector2(24, 24))
+		cursor_initialized = true

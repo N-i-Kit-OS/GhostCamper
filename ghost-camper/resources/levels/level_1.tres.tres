@@ -17,5 +17,5 @@ enemy_types = Array[ExtResource("1_nrrg6")]([ExtResource("2_mi6r6"), ExtResource
 enemy_weights = Array[float]([1.0, 0.3, 0.2])
 speed_multiplier_min = 0.9
 speed_multiplier_max = 1.2
-obstacle_layouts = Array[String](["res://scenes/obstacles/layouts/level_1/layout_1.tscn", "res://scenes/obstacles/layouts/level_1/layout_2.tscn", "res://scenes/obstacles/layouts/level_1/layout_3.tscn"])
+obstacle_layouts = Array[String](["res://scenes/obstacles/layouts/level_1/layout_1.tscn"])
 metadata/_custom_type_script = "uid://c5213vf02dguh"

@@ -14,6 +14,7 @@ var killed: int = 0
 var girl_health: int
 var spawned: int = 0
 var elapsed_time: float = 0.0
+var window_spawn_points: Array[Node2D] = []
 
 func _ready() -> void:
 	if not level_config and GameManager.current_level_config_path != "":
@@ -23,12 +24,12 @@ func _ready() -> void:
 	if not level_config:
 		push_error("LevelConfig не назначен!")
 		return
-	
+		
 	active_enemies = 0
 	
 	kills_label.text = "0"
 	randomize()
-	girl.global_position = get_viewport_rect().size * 0.5
+	#girl.global_position = get_viewport_rect().size * 0.5
 	
 	_load_obstacle_layout()
 	
@@ -45,6 +46,8 @@ func _ready() -> void:
 	
 	girl_health = level_config.girl_max_health
 	girl.area_entered.connect(_on_girl_area_entered)
+	
+	
 
 func _load_obstacle_layout() -> void:
 	if level_config.obstacle_layouts.is_empty():
@@ -58,6 +61,17 @@ func _load_obstacle_layout() -> void:
 	
 	var layout: Node = layout_scene.instantiate()
 	obstacles_root.add_child(layout)
+	
+	# Собираем точки спавна у окон/дверей
+	window_spawn_points.clear()
+	for node in get_tree().get_nodes_in_group("window_spawn"):
+		if node is Node2D:
+			window_spawn_points.append(node)
+			
+func _get_spawn_marker() -> Node2D:
+	if window_spawn_points.is_empty():
+		return null
+	return window_spawn_points[randi() % window_spawn_points.size()]
 
 func _on_spawn_timeout() -> void:
 	if spawned >= level_config.total_enemies:
@@ -68,11 +82,17 @@ func _on_spawn_timeout() -> void:
 	if not type:
 		return
 	
+	var spawn_marker := _get_spawn_marker()
+
 	var enemy := type.scene.instantiate()
 	add_child(enemy)
-	
-	enemy.global_position = _random_edge_position()
-	enemy.setup(type, girl)
+
+	if spawn_marker:
+		enemy.global_position = spawn_marker.global_position
+		enemy.setup(type, girl, spawn_marker)
+	else:
+		enemy.global_position = _random_edge_position()
+		enemy.setup(type, girl, null)
 	
 	var m := _get_speed_multiplier()
 	if "speed" in enemy:
