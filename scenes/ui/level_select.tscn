@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://buh13bycgwpad"]
+
+[ext_resource type="Script" uid="uid://ur0gmjj8uq3m" path="res://scripts/ui/level_select.gd" id="1_x15a5"]
+[ext_resource type="Theme" uid="uid://c7ouabr6k2fn1" path="res://scenes/ui/theme/main_ui_theme.tres" id="2_7l8mc"]
+[ext_resource type="Texture2D" uid="uid://ru6swvofdjqj" path="res://assets/ui/menu.png" id="2_l0h45"]
+[ext_resource type="AudioStream" uid="uid://dd4xrux00021f" path="res://assets/music/click.mp3" id="4_ccmqc"]
+
+[node name="LevelSelect" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_x15a5")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 576.0
+scale = Vector2(1.9, 1.9)
+theme = ExtResource("2_7l8mc")
+texture = ExtResource("2_l0h45")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7l8mc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="level_1" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Дом"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/level_1"]
+stream = ExtResource("4_ccmqc")
+
+[node name="level_2" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Двор"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/level_2"]
+stream = ExtResource("4_ccmqc")
+
+[node name="level_3" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Парк"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/level_3"]
+stream = ExtResource("4_ccmqc")
+
+[node name="back_btn" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Зажурчать"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/back_btn"]
+stream = ExtResource("4_ccmqc")

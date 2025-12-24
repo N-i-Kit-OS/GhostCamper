@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=7 format=3 uid="uid://td06vvjr61r2"]
+
+[ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_or7n4"]
+[ext_resource type="Resource" uid="uid://dch3sh3o61s4m" path="res://resources/enemies/basic_enemy.tres" id="2_f38rn"]
+[ext_resource type="Script" uid="uid://c5213vf02dguh" path="res://scripts/resources/level_config.gd" id="2_o1k3p"]
+[ext_resource type="Resource" uid="uid://g1sgm0v1ua57" path="res://resources/enemies/fast_enemy.tres" id="3_2gm7q"]
+[ext_resource type="Resource" uid="uid://i17who68aqo5" path="res://resources/enemies/tank_enemy.tres" id="4_qd1vq"]
+[ext_resource type="Texture2D" uid="uid://bhc26ukh7obn" path="res://assets/actors/girl_yard.png" id="5_2gm7q"]
+
+[resource]
+script = ExtResource("2_o1k3p")
+level_name = "yard"
+total_enemies = 50
+spawn_interval_min = 0.7
+spawn_interval_max = 1.2
+level_duration = 75.0
+damage_per_hit = 18
+enemy_types = Array[ExtResource("1_or7n4")]([ExtResource("2_f38rn"), ExtResource("3_2gm7q"), ExtResource("4_qd1vq")])
+enemy_weights = Array[float]([0.8, 0.6, 0.3])
+speed_multiplier_max = 1.4
+obstacle_layouts = Array[String](["res://scenes/obstacles/layouts/level_2/layout_1.tscn"])
+girl_texture = ExtResource("5_2gm7q")
+target_position = Vector2(616.03, 700)
+metadata/_custom_type_script = "uid://c5213vf02dguh"

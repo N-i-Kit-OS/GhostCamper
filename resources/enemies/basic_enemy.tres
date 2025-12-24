@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=4 format=3 uid="uid://dch3sh3o61s4m"]
+
+[ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_6l6fd"]
+[ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="1_jqeog"]
+[ext_resource type="Texture2D" uid="uid://cksund6gawo8k" path="res://assets/actors/human1.png" id="3_sbxgt"]
+
+[resource]
+script = ExtResource("1_6l6fd")
+scene = ExtResource("1_jqeog")
+texture = ExtResource("3_sbxgt")
+metadata/_custom_type_script = "uid://b7g4gic283qc2"

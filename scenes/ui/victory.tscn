@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfvylcgj277sy"]
+
+[ext_resource type="Script" uid="uid://b22lkhf0dobcw" path="res://scripts/ui/victory.gd" id="1_am8tn"]
+[ext_resource type="Theme" uid="uid://c7ouabr6k2fn1" path="res://scenes/ui/theme/main_ui_theme.tres" id="2_3s4kw"]
+[ext_resource type="Texture2D" uid="uid://dwe6t4f4x1mvt" path="res://assets/ui/victory.png" id="2_humpp"]
+[ext_resource type="AudioStream" uid="uid://dd4xrux00021f" path="res://assets/music/click.mp3" id="4_xfc8j"]
+
+[node name="GameOver" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_am8tn")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1820.0
+offset_bottom = 1024.0
+scale = Vector2(1.06, 1.06)
+texture = ExtResource("2_humpp")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -105.815
+offset_bottom = -105.815
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_3s4kw")
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Продолжить"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/Button"]
+stream = ExtResource("4_xfc8j")

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://buxfoxgr2fhb4"]
+
+[ext_resource type="Texture2D" uid="uid://qkv0wpha3p50" path="res://assets/backgrounds/pvz.jpg" id="1_rsgbp"]
+[ext_resource type="PackedScene" uid="uid://b0qnfkvbuet3" path="res://scenes/obstacles/obstacle.tscn" id="2_uxtmb"]
+
+[node name="Level2Layout1" type="Node2D"]
+position = Vector2(124.985, 0.485)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1271.475, 540.96)
+scale = Vector2(1.47, 1.805)
+texture = ExtResource("1_rsgbp")
+
+[node name="Obstacle6" parent="." instance=ExtResource("2_uxtmb")]
+position = Vector2(376.86, 522.345)
+rotation = 0.17453292
+scale = Vector2(2.695, 13.66)
+
+[node name="SpawnWindow" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1797.015, 226.515)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow"]
+position = Vector2(-1185, 8)
+
+[node name="SpawnWindow6" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1797.015, 407.515)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow6"]
+position = Vector2(-1183, -1)
+
+[node name="SpawnWindow7" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1799.015, 586.515)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow7"]
+position = Vector2(-1186, -13)
+
+[node name="SpawnWindow8" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1791.015, 759.515)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow8"]
+position = Vector2(-1180, 7)
+
+[node name="SpawnWindow9" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1804.015, 928.515)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow9"]
+position = Vector2(-1219, -11)

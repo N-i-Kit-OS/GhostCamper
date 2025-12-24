@@ -1,0 +1,428 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwuqvwkxn37in"]
+
+[ext_resource type="PackedScene" uid="uid://b0qnfkvbuet3" path="res://scenes/obstacles/obstacle.tscn" id="1_52m5b"]
+[ext_resource type="Texture2D" uid="uid://c26vqrg704pon" path="res://assets/backgrounds/home1.jpg" id="1_l8kw7"]
+
+[node name="Level1Layout1" type="Node2D"]
+position = Vector2(124.985, 0.485)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(960, 540)
+scale = Vector2(0.525, 0.525)
+texture = ExtResource("1_l8kw7")
+
+[node name="Obstacle" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1365, 850)
+scale = Vector2(2, 2.4)
+
+[node name="Obstacle2" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1370, 685)
+scale = Vector2(1.2, 1.15)
+
+[node name="Obstacle31" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1678.055, 368.965)
+rotation = 0.7853982
+scale = Vector2(1.2, 1.15)
+
+[node name="Obstacle26" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(421.725, 420.2)
+scale = Vector2(1.2, 1.15)
+
+[node name="Obstacle27" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(235.615, 326.96)
+rotation = 0.7853982
+scale = Vector2(1.2, 1.15)
+
+[node name="Obstacle28" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(243.97, 184.13)
+rotation = -0.34906584
+scale = Vector2(1.2, 1.15)
+
+[node name="Obstacle29" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(318.405, 65.93)
+scale = Vector2(0.78, 0.72)
+
+[node name="Obstacle30" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(570, 64.425)
+scale = Vector2(0.78, 0.705)
+
+[node name="Obstacle32" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(199.28, 659.955)
+scale = Vector2(0.68, 0.705)
+
+[node name="Obstacle35" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1002, 420)
+scale = Vector2(0.69, 1.01)
+
+[node name="Obstacle33" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(199.99998, 939)
+scale = Vector2(0.68, 0.705)
+
+[node name="Obstacle34" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(609, 797)
+scale = Vector2(0.64, 3.345)
+
+[node name="Obstacle3" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(919, 464)
+scale = Vector2(1.415, 1.43)
+
+[node name="Obstacle21" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(934.535, 322)
+scale = Vector2(1.01, 2.085)
+
+[node name="Obstacle22" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(734.75, 276.85)
+scale = Vector2(1.01, 2.27)
+
+[node name="Obstacle8" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1769, 486)
+scale = Vector2(0.75, 0.75)
+
+[node name="Obstacle7" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1546.0001, 489.00003)
+rotation = 1.5707964
+scale = Vector2(0.4, 5)
+
+[node name="Obstacle16" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1410.545, 16)
+rotation = 1.5707964
+scale = Vector2(0.4, 6.995)
+
+[node name="Obstacle18" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(367.76, 514)
+rotation = 1.5707964
+scale = Vector2(0.145, 5.385)
+
+[node name="Obstacle19" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(402.065, 535.86)
+rotation = 1.5707964
+scale = Vector2(0.465, 3.93)
+
+[node name="Obstacle20" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(424, 488)
+rotation = 1.5707964
+scale = Vector2(0.465, 3.63)
+
+[node name="Obstacle12" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(943.535, 628)
+rotation = 1.5707964
+scale = Vector2(0.155, 3.03)
+
+[node name="Obstacle23" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(713.9999, 515.00006)
+rotation = 1.5707964
+scale = Vector2(0.155, 1.14)
+
+[node name="Obstacle24" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(754.9, 366.07)
+rotation = 1.5707964
+scale = Vector2(0.18, 1.515)
+
+[node name="Obstacle25" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(696, 269.535)
+scale = Vector2(0.16, 5.99)
+
+[node name="Obstacle5" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1532, 755)
+scale = Vector2(1, 1.6)
+
+[node name="Obstacle15" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1195, 204)
+scale = Vector2(0.785, 5.01)
+
+[node name="Obstacle9" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(892, 980)
+scale = Vector2(1, 1.84)
+
+[node name="Obstacle13" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(675, 837.83)
+scale = Vector2(1, 5.35)
+
+[node name="Obstacle4" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1534.0001, 564)
+scale = Vector2(1.8, 1.2)
+
+[node name="Obstacle14" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1171.09, 448.58)
+rotation = 1.5707964
+scale = Vector2(1.8, 1.2)
+
+[node name="Obstacle10" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(807, 1004.99994)
+scale = Vector2(1.115, 0.705)
+
+[node name="Obstacle11" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(817.00006, 912)
+scale = Vector2(0.84, 0.59)
+
+[node name="Obstacle6" parent="." instance=ExtResource("1_52m5b")]
+position = Vector2(1013.99994, 812)
+scale = Vector2(4.035, 2.335)
+
+[node name="SpawnWindow" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(930, 4)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow"]
+position = Vector2(-151, 523)
+
+[node name="SpawnWindow6" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1095, 7)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow6"]
+position = Vector2(-60, 500)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow6"]
+position = Vector2(-438, 577)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow6"]
+position = Vector2(-795.985, 658.515)
+
+[node name="SpawnWindow7" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1726, 6)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow7"]
+position = Vector2(-496, 521)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow7"]
+position = Vector2(-1068, 558)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow7"]
+position = Vector2(-1385.985, 655.515)
+
+[node name="SpawnWindow8" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1791, 643)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow8"]
+position = Vector2(-1014, -117)
+
+[node name="SpawnWindow22" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(499, 1067)
+
+[node name="SpawnWindow23" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(449, 1065)
+
+[node name="SpawnWindow24" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(395, 1064)
+
+[node name="SpawnWindow25" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(336, 1064)
+
+[node name="SpawnWindow11" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1791, 718)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow11"]
+position = Vector2(-444, -143)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow11"]
+position = Vector2(-1080, -117)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow11"]
+position = Vector2(-1249.985, -5.4849854)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow11"]
+position = Vector2(-1281.985, 236.51501)
+
+[node name="SpawnWindow12" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1787, 786)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(-461, -249)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(-1118, -176)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(-1238.985, -98.484985)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(-1266.985, 158.51501)
+
+[node name="SpawnWindow13" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1784, 846)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow13"]
+position = Vector2(-431, -302)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow13"]
+position = Vector2(-1068, -260)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow13"]
+position = Vector2(-1469.985, -192.48499)
+
+[node name="SpawnWindow14" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1648, 1070)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow14"]
+position = Vector2(-190, -329)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow14"]
+position = Vector2(-365, -339)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow14"]
+position = Vector2(-949, -458)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow14"]
+position = Vector2(-1104.985, -419.485)
+
+[node name="PathPoint5" type="Marker2D" parent="SpawnWindow14"]
+position = Vector2(-1137.985, -112.484985)
+
+[node name="SpawnWindow15" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1587, 1071)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow15"]
+position = Vector2(-127, -322)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow15"]
+position = Vector2(-305, -346)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow15"]
+position = Vector2(-903, -465)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow15"]
+position = Vector2(-1050.985, -413.485)
+
+[node name="PathPoint5" type="Marker2D" parent="SpawnWindow15"]
+position = Vector2(-1083.985, -123.484985)
+
+[node name="SpawnWindow16" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1520, 1064)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow16"]
+position = Vector2(-63, -322)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow16"]
+position = Vector2(-242, -333)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow16"]
+position = Vector2(-841, -477)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow16"]
+position = Vector2(-989.985, -383.485)
+
+[node name="PathPoint5" type="Marker2D" parent="SpawnWindow16"]
+position = Vector2(-1021.985, -99.484985)
+
+[node name="SpawnWindow17" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1459, 1067)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow17"]
+position = Vector2(-197, -120)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow17"]
+position = Vector2(-282, -373)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow17"]
+position = Vector2(-754, -494)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow17"]
+position = Vector2(-754, -494)
+
+[node name="SpawnWindow18" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1400, 1064)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow18"]
+position = Vector2(-142, -116)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow18"]
+position = Vector2(-228, -398)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow18"]
+position = Vector2(-714, -496)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow18"]
+position = Vector2(-1030.985, -399.485)
+
+[node name="SpawnWindow30" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1337, 1061)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow30"]
+position = Vector2(-230, -527)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow30"]
+position = Vector2(-625, -497)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow30"]
+position = Vector2(-809.985, -408.485)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow30"]
+position = Vector2(-828.985, -96.484985)
+
+[node name="SpawnWindow31" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(1129, 1077)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow31"]
+position = Vector2(155, -338)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow31"]
+position = Vector2(-431, -490)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow31"]
+position = Vector2(-800.985, -414.485)
+
+[node name="SpawnWindow32" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(961, 1077)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow32"]
+position = Vector2(242, -192)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow32"]
+position = Vector2(204, -455)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow32"]
+position = Vector2(-316, -483)
+
+[node name="SpawnWindow33" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(728, 1068)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow33"]
+position = Vector2(-30, -512)
+
+[node name="SpawnWindow34" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(147, 651)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow34"]
+position = Vector2(79, -40)
+
+[node name="SpawnWindow36" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(147, 417)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow36"]
+position = Vector2(350, -73)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow36"]
+position = Vector2(469, 94)
+
+[node name="SpawnWindow37" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(153, 139)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow37"]
+position = Vector2(139, -27)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow37"]
+position = Vector2(480, 385)
+
+[node name="SpawnWindow38" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(357, 11)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow38"]
+position = Vector2(267, 531)
+
+[node name="SpawnWindow39" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(421, 18)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow39"]
+position = Vector2(193, 520)
+
+[node name="SpawnWindow40" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(492, 11)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow40"]
+position = Vector2(131, 555)
+
+[node name="SpawnWindow35" type="Marker2D" parent="." groups=["window_spawn"]]
+position = Vector2(136, 954)
+
+[node name="PathPoint1" type="Marker2D" parent="SpawnWindow35"]
+position = Vector2(100, 47)

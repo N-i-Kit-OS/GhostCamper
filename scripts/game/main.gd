@@ -1,0 +1,204 @@
+extends Node2D
+
+@export var level_config: LevelConfig
+
+@onready var girl: Area2D = $Girl
+@onready var girl_sprite: Sprite2D = $Girl/Sprite2D
+@onready var spawn_timer: Timer = $SpawnTimer
+@onready var health_bar: ProgressBar = $HUD/HUDRoot/HealthBar
+@onready var kills_label: Label = $HUD/HUDRoot/Progress
+@onready var obstacles_root: Node2D = $Obstacles
+
+@onready var level_start_sound: AudioStreamPlayer = $AudioStreamPlayer
+
+var active_enemies: int = 0
+var killed: int = 0
+var girl_health: int
+var spawned: int = 0
+var elapsed_time: float = 0.0
+var window_spawn_points: Array[Node2D] = []
+
+func _ready() -> void:
+	
+	level_start_sound.play()
+	
+	# Загрузка LevelConfig из GameManager
+	if not level_config and GameManager.current_level_config_path != "":
+		var cfg := load(GameManager.current_level_config_path)
+		if cfg:
+			level_config = cfg
+	if not level_config:
+		push_error("LevelConfig не назначен!")
+		return
+		
+	active_enemies = 0
+	
+	kills_label.text = "0"
+	randomize()
+
+	# *** Логика для установки позиции девушки (цели для врагов) ***
+	if level_config.target_position:
+		girl.global_position = level_config.target_position
+	# Если target_position не задана, девушка останется на своей позиции по умолчанию из сцены main.tscn.
+
+	# Логика для отображения/скрытия девушки в зависимости от уровня
+	if level_config.girl_texture:
+		girl_sprite.texture = level_config.girl_texture
+		girl_sprite.visible = true
+	else:
+		girl_sprite.visible = false
+
+	_load_obstacle_layout() # Загружаем лайоут (препятствия и фоны из него)
+	
+	spawned = 0
+	elapsed_time = 0.0
+	
+	spawn_timer.wait_time = level_config.spawn_interval_min
+	spawn_timer.autostart = true
+	spawn_timer.timeout.connect(_on_spawn_timeout)
+	
+	health_bar.min_value = 0
+	health_bar.max_value = level_config.girl_max_health
+	health_bar.value = level_config.girl_max_health
+	
+	girl_health = level_config.girl_max_health
+	girl.area_entered.connect(_on_girl_area_entered)
+	
+
+func _load_obstacle_layout() -> void:
+	if level_config.obstacle_layouts.is_empty():
+		return
+	
+	# Выбираем случайный лайоут из списка для текущего уровня
+	var layout_path := level_config.obstacle_layouts[randi() % level_config.obstacle_layouts.size()]
+	var layout_scene := load(layout_path)
+	if not layout_scene:
+		push_warning("Не удалось загрузить шаблон препятствий: %s" % layout_path)
+		return
+	
+	var layout: Node = layout_scene.instantiate()
+	obstacles_root.add_child(layout)
+	
+	# Собираем точки спавна у окон/дверей из загруженного лайоута
+	window_spawn_points.clear()
+	for node in get_tree().get_nodes_in_group("window_spawn"):
+		if node is Node2D:
+			window_spawn_points.append(node)
+			
+func _get_spawn_marker() -> Node2D:
+	if window_spawn_points.is_empty():
+		return null
+	return window_spawn_points[randi() % window_spawn_points.size()]
+
+func _on_spawn_timeout() -> void:
+	if spawned >= level_config.total_enemies:
+		spawn_timer.stop()
+		return
+	
+	var type: EnemyType = _get_random_enemy_type()
+	if not type:
+		return
+	
+	var spawn_marker := _get_spawn_marker()
+
+	var enemy := type.scene.instantiate()
+	add_child(enemy)
+
+	if spawn_marker:
+		enemy.global_position = spawn_marker.global_position
+		enemy.setup(type, girl, spawn_marker)
+	else:
+		enemy.global_position = _random_edge_position()
+		enemy.setup(type, girl, null)
+	
+	var m := _get_speed_multiplier()
+	if "speed" in enemy: # Проверяем, есть ли свойство speed у врага
+		enemy.speed *= m
+	
+	enemy.connect("died", _on_enemy_died)
+	
+	active_enemies += 1
+	spawned += 1
+	
+	if spawned >= level_config.total_enemies and active_enemies == 0:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/victory.tscn")
+	
+	spawn_timer.wait_time = randf_range(level_config.spawn_interval_min, level_config.spawn_interval_max)
+
+func _get_random_enemy_type() -> EnemyType:
+	if level_config.enemy_types.is_empty():
+		return null
+	if level_config.enemy_weights.is_empty() or level_config.enemy_weights.size() != level_config.enemy_types.size():
+		return level_config.enemy_types[randi() % level_config.enemy_types.size()]
+	
+	var total_weight: float = 0.0
+	for w in level_config.enemy_weights:
+		total_weight += w
+	
+	var r := randf() * total_weight
+	var acc: float = 0.0
+	for i in range(level_config.enemy_types.size()):
+		acc += level_config.enemy_weights[i]
+		if r <= acc:
+			return level_config.enemy_types[i]
+	return level_config.enemy_types[0]
+
+func _get_speed_multiplier() -> float:
+	if level_config.level_duration <= 0.0:
+		return level_config.speed_multiplier_max
+	var t := clampf(elapsed_time / level_config.level_duration, 0.0, 1.0)
+	return lerpf(level_config.speed_multiplier_min, level_config.speed_multiplier_max, t)
+
+func _random_edge_position() -> Vector2:
+	var view := get_viewport_rect().size
+	var center := girl.global_position
+	var margin := 96.0
+	var half_diag := sqrt(view.x * view.x + view.y * view.y) * 0.5
+	var radius := maxf(level_config.spawn_radius, half_diag + margin)
+	var a := randf() * TAU
+	return center + Vector2(cos(a), sin(a)) * radius
+
+func _on_girl_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemies"):
+		var enemy := area.get_parent() # Получаем ссылку на родителя (сам узел врага)
+		if enemy is CharacterBody2D and enemy.has_method("get_is_dying") and enemy.get_is_dying():
+			# Враг уже умирает, игнорируем столкновение с девушкой для удаления
+			return
+
+		# Если враг не умирает, обрабатываем столкновение как обычно
+		girl_health -= level_config.damage_per_hit
+		health_bar.value = float(girl_health) / level_config.girl_max_health * 100
+		active_enemies = max(active_enemies - 1, 0)
+
+		if enemy:
+			# Вместо прямого queue_free(), запускаем последовательность смерти
+			if enemy.has_method("_start_death_sequence"):
+				enemy._start_death_sequence("bad_end") # Передаем "bad_end"
+			else:
+				enemy.queue_free() # Запасной вариант, если метод не найден
+
+		if girl_health <= 0:
+			GameManager.set_state(GameManager.State.GAME_OVER) # Устанавливаем состояние игры на GAME_OVER
+			get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/game_over.tscn")
+
+func _process(delta: float) -> void:
+	elapsed_time += delta
+
+const PAUSE_MENU := preload("res://scenes/ui/pause_menu.tscn")
+
+func _unhandled_input(e: InputEvent) -> void:
+	if e.is_action_pressed("ui_cancel"):
+		if get_tree().paused:
+			get_tree().paused = false
+			return
+		get_tree().paused = true
+		var ui := PAUSE_MENU.instantiate()
+		add_child(ui)
+
+func _on_enemy_died() -> void:
+	killed += 1
+	kills_label.text = str(killed)
+	active_enemies = max(active_enemies - 1, 0)
+	
+	if spawned >= level_config.total_enemies and active_enemies == 0:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/victory.tscn")

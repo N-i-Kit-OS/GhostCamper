@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://boykt467blor8"]
+
+[ext_resource type="Script" uid="uid://cbo5s7yuui0r5" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
+[ext_resource type="Texture2D" uid="uid://di1h08e0w0dyh" path="res://assets/ui/pause_menu.png" id="2_0lmf7"]
+[ext_resource type="Theme" uid="uid://c7ouabr6k2fn1" path="res://scenes/ui/theme/main_ui_theme.tres" id="3_f6eus"]
+[ext_resource type="AudioStream" uid="uid://dd4xrux00021f" path="res://assets/music/click.mp3" id="4_8uki6"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_6tw0m")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 576.0
+scale = Vector2(1.06, 1.06)
+texture = ExtResource("2_0lmf7")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 19.65
+offset_bottom = 19.650024
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_f6eus")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Убивать дальше"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/ResumeButton"]
+stream = ExtResource("4_8uki6")
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Найти другую
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/RestartButton"]
+stream = ExtResource("4_8uki6")
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Упокоиться..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/MenuButton"]
+stream = ExtResource("4_8uki6")
