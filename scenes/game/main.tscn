@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://br6hjfg7xbg2s"]
 
 [ext_resource type="Script" uid="uid://we16e50intvf" path="res://scripts/game/main.gd" id="1_oekm8"]
-[ext_resource type="Texture2D" uid="uid://bltosiytquwso" path="res://assets/actors/girl_park.png" id="2_oekm8"]
+[ext_resource type="Texture2D" uid="uid://dc28henbqvplm" path="res://assets/actors/girl_park.png" id="2_oekm8"]
 [ext_resource type="AudioStream" uid="uid://4obxboj8hc4f" path="res://assets/music/cry.mp3" id="3_yd8kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no8bm"]

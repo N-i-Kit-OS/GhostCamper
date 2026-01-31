@@ -29,8 +29,10 @@ func _start_level(_idx: int) -> void:
 		
 	GameManager.current_level_config_path = LEVEL_CONFIGS[_idx - 1]
 	get_tree().change_scene_to_file(LEVEL_SCENE)
+	queue_free()
 
 func _on_back() -> void:
 	# НОВАЯ СТРОКА: Воспроизведение звука для кнопки "Назад"
 	back_sound.play()
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	queue_free()

@@ -26,7 +26,8 @@ func _on_play_button_pressed() -> void:
 	play_button_sound.play() # Используем @onready переменную для звука
 	if Engine.has_singleton("GameManager"):
 		GameManager.set_state(GameManager.State.PLAYING)
-	get_tree().change_scene_to_file(LEVEL_SCENE_PATH)
+	var level_select_instance = load(LEVEL_SCENE_PATH).instantiate()
+	get_tree().get_root().add_child(level_select_instance)
 
 func _on_settings_button_pressed() -> void:
 	settings_button_sound.play() # Используем @onready переменную для звука
