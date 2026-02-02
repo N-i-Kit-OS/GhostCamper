@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://g1sgm0v1ua57" path="res://resources/enemies/fast_enemy.tres" id="3_vh5kk"]
 [ext_resource type="Resource" uid="uid://i17who68aqo5" path="res://resources/enemies/tank_enemy.tres" id="4_sdtqw"]
 [ext_resource type="Script" uid="uid://c5213vf02dguh" path="res://scripts/resources/level_config.gd" id="5_c1nnq"]
-[ext_resource type="Texture2D" uid="uid://bltosiytquwso" path="res://assets/actors/girl_park.png" id="5_dbnjb"]
+[ext_resource type="Texture2D" uid="uid://dc28henbqvplm" path="res://assets/actors/girl_park.png" id="5_dbnjb"]
 
 [resource]
 script = ExtResource("5_c1nnq")
@@ -19,4 +19,5 @@ speed_multiplier_min = 1.1
 speed_multiplier_max = 1.6
 obstacle_layouts = Array[String](["res://scenes/obstacles/layouts/level_3/layout_1.tscn"])
 girl_texture = ExtResource("5_dbnjb")
+target_position = Vector2(600, 967)
 metadata/_custom_type_script = "uid://c5213vf02dguh"
