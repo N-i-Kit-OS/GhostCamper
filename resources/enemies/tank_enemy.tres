@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b7g4gic283qc2" path="res://scripts/resources/enemy_type.gd" id="1_goftu"]
 [ext_resource type="PackedScene" uid="uid://dtycxrbhxbcw" path="res://scenes/entities/enemy.tscn" id="1_ucpcc"]
-[ext_resource type="Texture2D" uid="uid://cxn2lt1sslbjj" path="res://assets/actors/humen.png" id="3_hcie6"]
+[ext_resource type="SpriteFrames" uid="uid://l3wdi2mgfhhn" path="res://resources/tank_man.tres" id="3_hcie6"]
 
 [resource]
 script = ExtResource("1_goftu")
 scene = ExtResource("1_ucpcc")
 clicks_to_kill = 3
 base_speed = 90.0
-texture = ExtResource("3_hcie6")
+sprite_frames = ExtResource("3_hcie6")
 metadata/_custom_type_script = "uid://b7g4gic283qc2"

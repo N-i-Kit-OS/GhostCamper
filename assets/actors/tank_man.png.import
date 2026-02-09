@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daeahvl31iojw"
-path="res://.godot/imported/humen.png-d29de87ebb3715008838322013d33b98.ctex"
+uid="uid://btyhujmooih80"
+path="res://.godot/imported/tank_man.png-295d4b4974858f9352923ce31e9204fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/actors/humen.png"
-dest_files=["res://.godot/imported/humen.png-d29de87ebb3715008838322013d33b98.ctex"]
+source_file="res://assets/actors/tank_man.png"
+dest_files=["res://.godot/imported/tank_man.png-295d4b4974858f9352923ce31e9204fe.ctex"]
 
 [params]
 

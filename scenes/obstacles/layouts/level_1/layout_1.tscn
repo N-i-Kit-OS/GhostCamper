@@ -165,7 +165,10 @@ scale = Vector2(4.79, 2.335)
 position = Vector2(985.015, 14.514999)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow"]
-position = Vector2(-57, 466)
+position = Vector2(26, 14)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow"]
+position = Vector2(-63, 469)
 
 [node name="SpawnWindow6" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(1718.015, 14.514999)
@@ -180,7 +183,10 @@ position = Vector2(-1260, 546)
 position = Vector2(787.015, 18.515)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow7"]
-position = Vector2(-157, 512)
+position = Vector2(-31, 8)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow7"]
+position = Vector2(-150, 493)
 
 [node name="SpawnWindow8" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(1789.015, 634.515)
@@ -369,22 +375,31 @@ position = Vector2(550, 378)
 position = Vector2(1795.015, 188.515)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow38"]
-position = Vector2(-644, 322)
+position = Vector2(-51, -160)
 
 [node name="PathPoint2" type="Marker2D" parent="SpawnWindow38"]
-position = Vector2(-1370, 399)
+position = Vector2(-609, 318)
+
+[node name="PathPoint3" type="Marker2D" parent="SpawnWindow38"]
+position = Vector2(-1347, 400)
 
 [node name="SpawnWindow39" type="Marker2D" parent="." groups=["window_spawn"]]
-position = Vector2(444.015, 14.515)
+position = Vector2(469.015, 15.515)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow39"]
-position = Vector2(-27, 495)
+position = Vector2(-47, 21)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow39"]
+position = Vector2(-44, 497)
 
 [node name="SpawnWindow40" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(246.01501, 18.515)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow40"]
-position = Vector2(198, 498)
+position = Vector2(37, 10)
+
+[node name="PathPoint2" type="Marker2D" parent="SpawnWindow40"]
+position = Vector2(195, 499)
 
 [node name="SpawnWindow35" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(-114.984985, 929.515)

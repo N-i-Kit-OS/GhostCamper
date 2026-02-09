@@ -7,7 +7,8 @@ signal died
 
 @onready var hitbox: Area2D = $Hitbox
 @onready var hitbox_shape: CollisionShape2D = hitbox.get_node_or_null("CollisionShape2D")
-@onready var enemy_sprite: Sprite2D = $Hitbox/EnemySprite
+#@onready var enemy_sprite: Sprite2D = $Hitbox/EnemySprite
+@onready var enemy_animated_sprite: AnimatedSprite2D = $Hitbox/EnemyAnimatedSprite
 @onready var flip_flop_timer: Timer = $FlipFlopTimer 
 @onready var tap_effect_sprite: Sprite2D = $TapEffectSprite
 @onready var tap_effect_timer: Timer = $TapEffectTimer
@@ -33,15 +34,21 @@ func _ready() -> void:
 		hitbox_shape.shape.radius = click_radius
 
 	# Подключаем сигналы таймеров
-	flip_flop_timer.timeout.connect(_on_flip_flop_timeout)
+	#flip_flop_timer.timeout.connect(_on_flip_flop_timeout)
 	tap_effect_timer.timeout.connect(_on_tap_effect_timeout)
 
 func setup(type: EnemyType, target_node: Node2D, spawn_marker: Node2D) -> void:
 	speed = type.base_speed
 	clicks_to_kill = type.clicks_to_kill
 	target = target_node # Устанавливаем цель
-	enemy_sprite.texture = type.texture # Устанавливаем текстуру из EnemyType
-	enemy_sprite.visible = true # Убедимся, что спрайт виден при спавне
+	# enemy_sprite.texture = type.texture
+
+	if type.sprite_frames:
+		enemy_animated_sprite.sprite_frames = type.sprite_frames
+		#enemy_animated_sprite.play("walk") # Запускаем анимацию
+
+	enemy_animated_sprite.visible = true
+	enemy_animated_sprite.scale = type.scale_factor
 	is_dying = false # Сбрасываем флаг смерти для нового врага
 	
 	# Скрываем спрайты эффектов при спавне (они будут проявляться анимацией)
@@ -95,7 +102,25 @@ func _move_towards(target_pos: Vector2) -> void:
 	# если ваша картинка 'human1.png' по умолчанию нарисована так, что "вперед" для нее - это "вверх" (по оси Y).
 	# Если ваша картинка по умолчанию нарисована лицом "вправо" (по оси X),
 	# то смещение '+ PI / 2' НЕ НУЖНО, и нужно использовать просто 'velocity.angle()'.
-	enemy_sprite.rotation = velocity.angle() + PI / 2
+	#enemy_animated_sprite.rotation = velocity.angle() + PI / 2
+	var current_animation: String = "walk_down" # Анимация по умолчанию
+	var angle_rad = velocity.angle()
+
+	var quarter_pi = PI / 4.0
+	var three_quarter_pi = 3.0 * PI / 4.0
+	
+	if angle_rad >= -quarter_pi and angle_rad < quarter_pi: # ОТ -45 ДО +45 ГРАДУСОВ (ВПРАВО)
+		current_animation = "walk_right"
+	elif angle_rad >= quarter_pi and angle_rad < three_quarter_pi: # ОТ +45 ДО +135 ГРАДУСОВ (ВНИЗ)
+		current_animation = "walk_down"
+	elif angle_rad >= three_quarter_pi or angle_rad < -three_quarter_pi: # ОТ +135 ДО +180 И ОТ -180 ДО -135 ГРАДУСОВ (ВЛЕВО)
+		current_animation = "walk_left"
+	elif angle_rad >= -three_quarter_pi and angle_rad < -quarter_pi: # ОТ -135 ДО -45 ГРАДУСОВ (ВВЕРХ)
+		current_animation = "walk_up"
+
+	# Воспроизводим выбранную анимацию, только если она отличается от текущей
+	if enemy_animated_sprite.animation != current_animation:
+		enemy_animated_sprite.play(current_animation)
 
 func _on_hitbox_input_event(_viewport, event, _shape_idx) -> void:
 	# Игнорируем клики, если враг уже умирает
@@ -108,21 +133,21 @@ func _on_hitbox_input_event(_viewport, event, _shape_idx) -> void:
 			# Враг "убит" кликом, запускаем процесс смерти с типом "tap"
 			_start_death_sequence("tap")
 
-func _on_flip_flop_timeout() -> void:
-	# Не зеркалируем, если враг умирает
-	if is_dying:
-		enemy_sprite.flip_h = false
-		is_flipping = false
-		return
+#func _on_flip_flop_timeout() -> void:
+#	# Не зеркалируем, если враг умирает
+#	if is_dying:
+#		enemy_sprite.flip_h = false
+#		is_flipping = false
+#		return
 
 	# Только если враг движется, переключаем зеркальность
-	if velocity.length() > 0:
-		is_flipping = not is_flipping
-		enemy_sprite.flip_h = is_flipping
-	else:
+	#if velocity.length() > 0:
+	#	is_flipping = not is_flipping
+	#	enemy_sprite.flip_h = is_flipping
+	#else:
 		# Если не движется, сбросить зеркальность до исходного состояния
-		enemy_sprite.flip_h = false
-		is_flipping = false
+	#	enemy_sprite.flip_h = false
+	#	is_flipping = false
 
 func _on_tap_effect_timeout() -> void:
 	# Когда таймер эффекта закончился, запускаем анимацию исчезновения "tap"
@@ -139,14 +164,13 @@ func get_is_dying() -> bool:
 	return is_dying
 
 # Централизованная функция для запуска последовательности смерти врага
-# Централизованная функция для запуска последовательности смерти врага
 func _start_death_sequence(death_type: String) -> void:
 	if is_dying: # Если уже умирает, игнорируем повторный вызов
 		return
 
 	is_dying = true # Устанавливаем флаг, что враг умирает
 
-	enemy_sprite.visible = false # Скрываем спрайт врага
+	enemy_animated_sprite.visible = false # Скрываем спрайт врага
 	
 	# *** ОТКЛЮЧАЕМ ВСЮ КОЛЛИЗИЮ ***
 	hitbox.set_deferred("monitoring", false)
@@ -158,7 +182,7 @@ func _start_death_sequence(death_type: String) -> void:
 	if $CollisionShape2D: $CollisionShape2D.set_deferred("disabled", true)
 
 	flip_flop_timer.stop() # Останавливаем таймер зеркалирования
-	enemy_sprite.flip_h = false # Сбрасываем зеркальность
+	#enemy_sprite.flip_h = false # Сбрасываем зеркальность
 
 	# Скрываем спрайты эффектов (они будут проявляться анимацией)
 	tap_effect_sprite.visible = false

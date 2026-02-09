@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k6pg4ptpo6gs"
-path="res://.godot/imported/humen2.png-970a8264b2fcf8b4c536ce2e3a79faee.ctex"
+uid="uid://wu1uxqm4f0n3"
+path="res://.godot/imported/basic_man.png-0583edab092eb3bf9537d5b020647ec2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/actors/humen2.png"
-dest_files=["res://.godot/imported/humen2.png-970a8264b2fcf8b4c536ce2e3a79faee.ctex"]
+source_file="res://assets/actors/basic_man.png"
+dest_files=["res://.godot/imported/basic_man.png-0583edab092eb3bf9537d5b020647ec2.ctex"]
 
 [params]
 

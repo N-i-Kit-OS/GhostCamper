@@ -112,7 +112,7 @@ func _on_spawn_timeout() -> void:
 		enemy.setup(type, girl, null)
 	
 	var m := _get_speed_multiplier()
-	if "speed" in enemy: # Проверяем, есть ли свойство speed у врага
+	if "speed" in enemy: 
 		enemy.speed *= m
 	
 	enemy.connect("died", _on_enemy_died)
