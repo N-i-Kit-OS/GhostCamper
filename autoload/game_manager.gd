@@ -3,7 +3,10 @@ extends Node
 var current_level_config_path: String = "res://resources/levels/level_1.tres"
 enum State { MAIN_MENU, PLAYING, PAUSED, GAME_OVER }
 var state: State = State.MAIN_MENU
-var use_custom_cursor: bool = true # Изначально используем кастомный курсор
+
+enum CursorMode { SYSTEM, CROSSHAIR, HAND }
+var cursor_mode: CursorMode = CursorMode.CROSSHAIR
+
 signal state_changed(state: State)
 func set_state(s: State) -> void:
 	state = s
@@ -15,14 +18,22 @@ func _ready() -> void:
 	_set_custom_cursor()
 
 func _set_custom_cursor() -> void:
-	if use_custom_cursor:
-		var cursor_tex := load("res://assets/ui/cursor.png")
-		if cursor_tex:
-			Input.set_custom_mouse_cursor(cursor_tex, Input.CURSOR_ARROW, Vector2(24, 24))	
-	else:
-		Input.set_custom_mouse_cursor(null) # Устанавливаем стандартный курсор
-	cursor_initialized = true # Помечаем, что курсор инициализирован хотя бы раз
+	var tex: Texture2D = null
+	var hotspot := Vector2.ZERO
 
-func toggle_custom_cursor() -> void:
-	use_custom_cursor = not use_custom_cursor
-	_set_custom_cursor() # Обновляем курсор на основе нового значения
+	match cursor_mode:
+		CursorMode.SYSTEM:
+			tex = null
+		CursorMode.CROSSHAIR:
+			tex = load("res://assets/ui/cursor.png")
+			hotspot = Vector2(24, 24) # подгони под свой спрайт
+		CursorMode.HAND:
+			tex = load("res://assets/ui/hand.png")
+			hotspot = Vector2(8, 2)  # точка "кончика пальца", подбери опытно
+
+	Input.set_custom_mouse_cursor(tex, Input.CURSOR_ARROW, hotspot)
+	cursor_initialized = true
+
+func cycle_cursor_mode() -> void:
+	cursor_mode = (cursor_mode + 1) % 3
+	_set_custom_cursor()

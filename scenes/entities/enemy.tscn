@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtycxrbhxbcw"]
+[gd_scene load_steps=12 format=3 uid="uid://dtycxrbhxbcw"]
 
+[ext_resource type="SpriteFrames" uid="uid://ci03csudwdyj0" path="res://resources/fast_man.tres" id="2_hlb8m"]
 [ext_resource type="Script" uid="uid://dcsy451a1d106" path="res://scripts/entities/enemy.gd" id="2_ktqfp"]
 [ext_resource type="Texture2D" uid="uid://chk1rowsv4ceb" path="res://assets/actors/herz.png" id="3_defa4"]
 [ext_resource type="Texture2D" uid="uid://dm8oc8i1qoexr" path="res://assets/actors/tap.png" id="3_ktqfp"]
@@ -109,12 +110,14 @@ debug_color = Color(0.30049342, 0.49596357, 1, 0.41960785)
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(4.695, 4.695)
 shape = SubResource("RectangleShape2D_vufel")
 debug_color = Color(0.30049342, 0.49596357, 1, 0.41960785)
 
 [node name="EnemyAnimatedSprite" type="AnimatedSprite2D" parent="Hitbox"]
-animation = &""
+position = Vector2(0, -43.445)
+sprite_frames = ExtResource("2_hlb8m")
+animation = &"walk_down"
 
 [node name="FlipFlopTimer" type="Timer" parent="."]
 wait_time = 0.3

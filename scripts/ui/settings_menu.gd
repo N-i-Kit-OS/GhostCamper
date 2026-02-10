@@ -13,19 +13,18 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)
 
 func _update_cursor_button_text() -> void:
-	if GameManager.use_custom_cursor:
-		cursor_toggle_button.text = "Курсор: Прицел"
-	else:
-		cursor_toggle_button.text = "Курсор: Обычный"
+	match GameManager.cursor_mode:
+		GameManager.CursorMode.SYSTEM:
+			cursor_toggle_button.text = "Курсор: Обычный"
+		GameManager.CursorMode.CROSSHAIR:
+			cursor_toggle_button.text = "Курсор: Прицел"
+		GameManager.CursorMode.HAND:
+			cursor_toggle_button.text = "Курсор: Рука"
 
 func _on_cursor_toggle_pressed() -> void:
-	# Воспроизводим звук при переключении курсора
 	cursor_sound.play()
-	
-	# Ждем немного перед применением изменений
 	await get_tree().create_timer(0.1).timeout
-	
-	GameManager.toggle_custom_cursor()
+	GameManager.cycle_cursor_mode()
 	_update_cursor_button_text()
 
 func _on_back_button_pressed() -> void:

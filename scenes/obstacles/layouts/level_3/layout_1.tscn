@@ -105,7 +105,7 @@ position = Vector2(-75, -561)
 position = Vector2(-645, -639)
 
 [node name="PathPoint3" type="Marker2D" parent="SpawnWindow7"]
-position = Vector2(-878, -243)
+position = Vector2(-874, -207)
 
 [node name="SpawnWindow8" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(-123.985, 506.515)
@@ -120,37 +120,46 @@ position = Vector2(758, 379)
 position = Vector2(1134.015, 5.515)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow9"]
-position = Vector2(-96, 437)
+position = Vector2(-62, 6)
 
 [node name="PathPoint2" type="Marker2D" parent="SpawnWindow9"]
-position = Vector2(-611, 506)
+position = Vector2(-66, 428)
 
 [node name="PathPoint3" type="Marker2D" parent="SpawnWindow9"]
-position = Vector2(-869, 895)
+position = Vector2(-617, 496)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow9"]
+position = Vector2(-882, 857)
 
 [node name="SpawnWindow10" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(520.015, -16.485)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow10"]
-position = Vector2(-119, 235)
+position = Vector2(-47, 17)
 
 [node name="PathPoint2" type="Marker2D" parent="SpawnWindow10"]
-position = Vector2(-52, 537)
+position = Vector2(-105, 228)
 
 [node name="PathPoint3" type="Marker2D" parent="SpawnWindow10"]
-position = Vector2(112, 890)
+position = Vector2(124, 922)
 
 [node name="SpawnWindow12" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(478.015, -13.485001)
 
 [node name="PathPoint1" type="Marker2D" parent="SpawnWindow12"]
-position = Vector2(-21, 234)
+position = Vector2(38, 11)
 
 [node name="PathPoint2" type="Marker2D" parent="SpawnWindow12"]
-position = Vector2(27, 702)
+position = Vector2(-17, 231)
 
 [node name="PathPoint3" type="Marker2D" parent="SpawnWindow12"]
-position = Vector2(154, 929)
+position = Vector2(-4, 681)
+
+[node name="PathPoint4" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(2, 661)
+
+[node name="PathPoint5" type="Marker2D" parent="SpawnWindow12"]
+position = Vector2(177, 902)
 
 [node name="SpawnWindow11" type="Marker2D" parent="." groups=["window_spawn"]]
 position = Vector2(-129.985, 415.515)

@@ -19,5 +19,5 @@ speed_multiplier_min = 1.1
 speed_multiplier_max = 1.6
 obstacle_layouts = Array[String](["res://scenes/obstacles/layouts/level_3/layout_1.tscn"])
 girl_texture = ExtResource("5_dbnjb")
-target_position = Vector2(600, 967)
+target_position = Vector2(600, 950.395)
 metadata/_custom_type_script = "uid://c5213vf02dguh"

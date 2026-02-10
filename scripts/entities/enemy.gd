@@ -3,7 +3,9 @@ signal died
 
 @export var speed: float = 120.0
 @export var clicks_to_kill: int = 1
-@export var click_radius: float = 30.0  # радиус клика
+@export var click_radius: float = 60.0
+@export var collision_offset_y: float = 0.0
+
 
 @onready var hitbox: Area2D = $Hitbox
 @onready var hitbox_shape: CollisionShape2D = hitbox.get_node_or_null("CollisionShape2D")
@@ -81,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 	# 1) Идём по waypoints, если они есть
 	if current_wp < waypoints.size():
 		target_pos = waypoints[current_wp]
-		if global_position.distance_to(target_pos) < 8.0:
+		if (global_position + Vector2(0, collision_offset_y)).distance_to(target_pos) < 16.0: 
 			current_wp += 1
 		else:
 			_move_towards(target_pos)
@@ -93,7 +95,9 @@ func _physics_process(_delta: float) -> void:
 		_move_towards(target_pos)
 
 func _move_towards(target_pos: Vector2) -> void:
-	var dir := (target_pos - global_position).normalized()
+	var adjusted_target_pos = target_pos - Vector2(0, collision_offset_y)
+
+	var dir := (adjusted_target_pos - global_position).normalized()
 	velocity = dir * speed
 	move_and_slide()
 
