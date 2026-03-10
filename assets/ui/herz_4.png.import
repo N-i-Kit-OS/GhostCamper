@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b20unv5sxj4fl"
-path="res://.godot/imported/cursor_p.png-fa8011411ff75e127b5242bdbe72f293.ctex"
+uid="uid://da1t01gmuv6s8"
+path="res://.godot/imported/herz_4.png-58bd5aaff87ec59cbb6258608f31f24f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/cursor_p.png"
-dest_files=["res://.godot/imported/cursor_p.png-fa8011411ff75e127b5242bdbe72f293.ctex"]
+source_file="res://assets/ui/herz_4.png"
+dest_files=["res://.godot/imported/herz_4.png-58bd5aaff87ec59cbb6258608f31f24f.ctex"]
 
 [params]
 

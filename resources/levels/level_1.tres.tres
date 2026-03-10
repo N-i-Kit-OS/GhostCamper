@@ -13,7 +13,6 @@ level_name = "room"
 total_enemies = 30
 spawn_interval_min = 1.0
 spawn_interval_max = 1.8
-damage_per_hit = 15
 enemy_types = Array[ExtResource("1_nrrg6")]([ExtResource("2_mi6r6"), ExtResource("3_wunt1"), ExtResource("4_ddo5t")])
 enemy_weights = Array[float]([1.0, 0.3, 0.2])
 speed_multiplier_min = 0.9

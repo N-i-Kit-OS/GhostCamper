@@ -3,7 +3,6 @@ extends Control
 const LEVEL_SCENE_PATH := "res://scenes/ui/level_select.tscn"
 const SETTINGS_SCENE_PATH := "res://scenes/ui/settings_menu.tscn"
 
-# Объявляем @onready переменные для кнопок и их звуков, чтобы пути были надежными
 @onready var play_button: Button = $CenterContainer/VBoxContainer/PlayButton
 @onready var settings_button: Button = $CenterContainer/VBoxContainer/SettingsButton
 @onready var exit_button: Button = $CenterContainer/VBoxContainer/ExitButton
@@ -23,17 +22,17 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	play_button_sound.play() # Используем @onready переменную для звука
+	play_button_sound.play()
 	if Engine.has_singleton("GameManager"):
 		GameManager.set_state(GameManager.State.PLAYING)
 	var level_select_instance = load(LEVEL_SCENE_PATH).instantiate()
 	get_tree().get_root().add_child(level_select_instance)
 
 func _on_settings_button_pressed() -> void:
-	settings_button_sound.play() # Используем @onready переменную для звука
-	var settings_menu_instance = load(SETTINGS_SCENE_PATH).instantiate() # Загружаем сцену через load()
+	settings_button_sound.play()
+	var settings_menu_instance = load(SETTINGS_SCENE_PATH).instantiate()
 	get_tree().get_root().add_child(settings_menu_instance)
 
 func _on_exit_button_pressed() -> void:
-	exit_button_sound.play() # Используем @onready переменную для звука
+	exit_button_sound.play()
 	get_tree().quit()

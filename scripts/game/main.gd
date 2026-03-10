@@ -1,11 +1,19 @@
 extends Node2D
 
+const HEART_TEXTURES: Array[Texture2D] = [
+	preload("res://assets/ui/herz_1.png"),
+	preload("res://assets/ui/herz_2.png"),
+	preload("res://assets/ui/herz_3.png"),
+	preload("res://assets/ui/herz_4.png"),
+	preload("res://assets/ui/herz_5.png"),
+]
+
 @export var level_config: LevelConfig
 
 @onready var girl: Area2D = $Girl
 @onready var girl_sprite: Sprite2D = $Girl/Sprite2D
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var health_bar: ProgressBar = $HUD/HUDRoot/HealthBar
+@onready var health_icon: TextureRect = $HUD/HUDRoot/HealthIcon
 @onready var kills_label: Label = $HUD/HUDRoot/Progress
 @onready var obstacles_root: Node2D = $Obstacles
 
@@ -22,7 +30,6 @@ func _ready() -> void:
 	
 	level_start_sound.play()
 	
-	# Загрузка LevelConfig из GameManager
 	if not level_config and GameManager.current_level_config_path != "":
 		var cfg := load(GameManager.current_level_config_path)
 		if cfg:
@@ -36,19 +43,15 @@ func _ready() -> void:
 	kills_label.text = "0"
 	randomize()
 
-	# *** Логика для установки позиции девушки (цели для врагов) ***
 	if level_config.target_position:
 		girl.global_position = level_config.target_position
-	# Если target_position не задана, девушка останется на своей позиции по умолчанию из сцены main.tscn.
-
-	# Логика для отображения/скрытия девушки в зависимости от уровня
 	if level_config.girl_texture:
 		girl_sprite.texture = level_config.girl_texture
 		girl_sprite.visible = true
 	else:
 		girl_sprite.visible = false
 
-	_load_obstacle_layout() # Загружаем лайоут (препятствия и фоны из него)
+	_load_obstacle_layout()
 	
 	spawned = 0
 	elapsed_time = 0.0
@@ -57,19 +60,28 @@ func _ready() -> void:
 	spawn_timer.autostart = true
 	spawn_timer.timeout.connect(_on_spawn_timeout)
 	
-	health_bar.min_value = 0
-	health_bar.max_value = level_config.girl_max_health
-	health_bar.value = level_config.girl_max_health
+	girl_health = level_config.girl_max_health
+	_update_heart_icon()
 	
 	girl_health = level_config.girl_max_health
 	girl.area_entered.connect(_on_girl_area_entered)
 	
 
+func _update_heart_icon() -> void:
+	if not level_config:
+		return
+
+	var ratio := clampf(float(girl_health) / float(level_config.girl_max_health), 0.0, 1.0)
+
+	var step := int(ceil(ratio * 5.0))
+	var index := clampi(5 - step, 0, HEART_TEXTURES.size() - 1)
+
+	health_icon.texture = HEART_TEXTURES[index]
+
 func _load_obstacle_layout() -> void:
 	if level_config.obstacle_layouts.is_empty():
 		return
 	
-	# Выбираем случайный лайоут из списка для текущего уровня
 	var layout_path := level_config.obstacle_layouts[randi() % level_config.obstacle_layouts.size()]
 	var layout_scene := load(layout_path)
 	if not layout_scene:
@@ -79,7 +91,6 @@ func _load_obstacle_layout() -> void:
 	var layout: Node = layout_scene.instantiate()
 	obstacles_root.add_child(layout)
 	
-	# Собираем точки спавна у окон/дверей из загруженного лайоута
 	window_spawn_points.clear()
 	for node in get_tree().get_nodes_in_group("window_spawn"):
 		if node is Node2D:
@@ -160,25 +171,22 @@ func _random_edge_position() -> Vector2:
 
 func _on_girl_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
-		var enemy := area.get_parent() # Получаем ссылку на родителя (сам узел врага)
+		var enemy := area.get_parent()
 		if enemy is CharacterBody2D and enemy.has_method("get_is_dying") and enemy.get_is_dying():
-			# Враг уже умирает, игнорируем столкновение с девушкой для удаления
 			return
 
-		# Если враг не умирает, обрабатываем столкновение как обычно
 		girl_health -= level_config.damage_per_hit
-		health_bar.value = float(girl_health) / level_config.girl_max_health * 100
+		_update_heart_icon()
 		active_enemies = max(active_enemies - 1, 0)
 
 		if enemy:
-			# Вместо прямого queue_free(), запускаем последовательность смерти
 			if enemy.has_method("_start_death_sequence"):
-				enemy._start_death_sequence("bad_end") # Передаем "bad_end"
+				enemy._start_death_sequence("bad_end")
 			else:
-				enemy.queue_free() # Запасной вариант, если метод не найден
+				enemy.queue_free()
 
 		if girl_health <= 0:
-			GameManager.set_state(GameManager.State.GAME_OVER) # Устанавливаем состояние игры на GAME_OVER
+			GameManager.set_state(GameManager.State.GAME_OVER)
 			get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/game_over.tscn")
 
 func _process(delta: float) -> void:

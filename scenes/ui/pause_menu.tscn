@@ -9,9 +9,9 @@
 script = ExtResource("1_6tw0m")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_right = 1024.0
-offset_bottom = 576.0
-scale = Vector2(1.06, 1.06)
+offset_right = 3072.0
+offset_bottom = 2048.0
+scale = Vector2(0.63, 0.53)
 texture = ExtResource("2_0lmf7")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -32,7 +32,7 @@ alignment = 1
 [node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 36)
 layout_mode = 2
-text = "Убивать дальше"
+text = "Продолжить"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/ResumeButton"]
 stream = ExtResource("4_8uki6")
@@ -40,7 +40,7 @@ stream = ExtResource("4_8uki6")
 [node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 36)
 layout_mode = 2
-text = "Найти другую
+text = "Начать заново
 "
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/RestartButton"]
@@ -49,7 +49,7 @@ stream = ExtResource("4_8uki6")
 [node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 36)
 layout_mode = 2
-text = "Упокоиться..."
+text = "Выйти"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/MenuButton"]
 stream = ExtResource("4_8uki6")

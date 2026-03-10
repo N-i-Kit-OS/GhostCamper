@@ -26,10 +26,10 @@ func _set_custom_cursor() -> void:
 			tex = null
 		CursorMode.CROSSHAIR:
 			tex = load("res://assets/ui/cursor.png")
-			hotspot = Vector2(24, 24) # подгони под свой спрайт
+			hotspot = Vector2(24, 24)
 		CursorMode.HAND:
 			tex = load("res://assets/ui/hand.png")
-			hotspot = Vector2(8, 2)  # точка "кончика пальца", подбери опытно
+			hotspot = Vector2(8, 2)
 
 	Input.set_custom_mouse_cursor(tex, Input.CURSOR_ARROW, hotspot)
 	cursor_initialized = true

@@ -12,7 +12,7 @@ script = ExtResource("1_x15a5")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 1024.0
 offset_bottom = 576.0
-scale = Vector2(1.9, 1.9)
+scale = Vector2(1.25, 1.05)
 theme = ExtResource("2_7l8mc")
 texture = ExtResource("2_l0h45")
 
@@ -28,6 +28,21 @@ theme = ExtResource("2_7l8mc")
 layout_mode = 2
 theme_override_constants/separation = 14
 alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="level_1" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 36)
@@ -53,10 +68,13 @@ text = "Парк"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/level_3"]
 stream = ExtResource("4_ccmqc")
 
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="back_btn" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 36)
 layout_mode = 2
-text = "Зажурчать"
+text = "В меню"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CenterContainer/VBoxContainer/back_btn"]
 stream = ExtResource("4_ccmqc")

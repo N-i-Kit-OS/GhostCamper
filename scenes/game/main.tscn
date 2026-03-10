@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://br6hjfg7xbg2s"]
+[gd_scene load_steps=8 format=3 uid="uid://br6hjfg7xbg2s"]
 
 [ext_resource type="Script" uid="uid://we16e50intvf" path="res://scripts/game/main.gd" id="1_oekm8"]
 [ext_resource type="Texture2D" uid="uid://dc28henbqvplm" path="res://assets/actors/girl_park.png" id="2_oekm8"]
+[ext_resource type="Texture2D" uid="uid://4yx8ep4lqtdl" path="res://assets/ui/herz_1.png" id="2_uaf1y"]
 [ext_resource type="AudioStream" uid="uid://4obxboj8hc4f" path="res://assets/music/cry.mp3" id="3_yd8kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no8bm"]
@@ -33,6 +34,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/HUDRoot"]
+visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 48.0
@@ -54,6 +56,13 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "0"
 horizontal_alignment = 1
+
+[node name="HealthIcon" type="TextureRect" parent="HUD/HUDRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_uaf1y")
 
 [node name="Obstacles" type="Node2D" parent="."]
 

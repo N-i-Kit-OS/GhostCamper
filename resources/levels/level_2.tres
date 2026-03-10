@@ -14,7 +14,6 @@ total_enemies = 50
 spawn_interval_min = 0.7
 spawn_interval_max = 1.2
 level_duration = 75.0
-damage_per_hit = 18
 enemy_types = Array[ExtResource("1_or7n4")]([ExtResource("2_f38rn"), ExtResource("3_2gm7q"), ExtResource("4_qd1vq")])
 enemy_weights = Array[float]([0.8, 0.6, 0.3])
 speed_multiplier_max = 1.4
