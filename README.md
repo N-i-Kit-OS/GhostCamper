@@ -182,10 +182,6 @@ res://
 ## Window Settings (Reference)
 - Project → Project Settings → Display → Window: Mode=Fullscreen, Stretch=`canvas_items`, Aspect=`keep`.
 - Changing base resolution may require adjusting UI font sizes (Theme Overrides → Font Sizes).
-
-## Additional Documentation
-- See `LEVEL_BALANCE_CALCULATIONS.md` for detailed level balance calculations and design notes.
-
 ---
 
 ## Обзор игры
@@ -368,6 +364,3 @@ res://
 ## Настройки окна (для справки)
 - Project → Project Settings → Display → Window: Mode=Fullscreen, Stretch=`canvas_items`, Aspect=`keep`.
 - Изменение базового разрешения может потребовать корректировки размеров шрифтов в UI (Theme Overrides → Font Sizes).
-
-## Дополнительная документация
-- См. `LEVEL_BALANCE_CALCULATIONS.md` для подробных расчётов баланса уровней и заметок по дизайну.
